@@ -13,6 +13,13 @@ public class Pawn extends ChessPiece{
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         if (chessBoard.checkPos(toLine) && chessBoard.checkPos(toColumn)) {
             if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].getColor().equals(this.getColor())) {
+                if (Math.abs(toLine - line)==1 && Math.abs(toColumn - column)==1) {
+                    if (chessBoard.board[toLine][toColumn] != null) {
+                        if (!chessBoard.board[toLine][toColumn].getColor().equals(this.getColor())) {
+                            return true;
+                        } else return false;
+                    } else return false;
+                }
                 if (this.getColor().equals("White")) {
                     if (line == 1) {
                         if (toLine - line == 1 || toLine - line == 2) {
@@ -50,7 +57,7 @@ public class Pawn extends ChessPiece{
                         } else return false;
                     }
                 }
-            } else return false;
+            }  else return false;
         } else return false;
         }
 
